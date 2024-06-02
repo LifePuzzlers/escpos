@@ -1,21 +1,24 @@
 {
-    "extends": "tslint:recommended",
-    "rules": {
-        "trailing-comma": {
-            "options": {
-                "multiline": "never",
-                "singleline": "never"
-            }
-        },
-        "semicolon": {
-            "options": "always"
-        },
-        "indent": {
-            "options": "spaces"
-        },
-        "arrow-parens": false,
-        "eofline": true,
-        "no-console": [false],
-        "whitespace": false
-    }
+	"extends": "tslint:recommended",
+	"rules": {
+		"trailing-comma": {
+			"options": {
+				"multiline": "never",
+				"singleline": "never"
+			}
+		},
+		"semicolon": {
+			"options": "never"
+		},
+		"indent": {
+			"options": "spaces"
+		},
+		"arrow-parens": false,
+		"eofline": true,
+		"no-console": [
+			false
+		],
+		"whitespace": false,
+		"align": true
+	}
 }

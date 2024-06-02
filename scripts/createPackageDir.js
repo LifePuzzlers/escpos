@@ -9,7 +9,7 @@ const files = [
 Promise.all(files.map(file => copyFile(file)))
     .then(() => createPackageFile())
     .then(()=>{
-        const srcDir = path.resolve(__dirname,'../lib/');
+        const srcDir = path.resolve(__dirname,'../src/');
         const destDir = path.resolve(__dirname,'../dist/');
 
         console.log(`Start copying compiled files form ${srcDir} to ${destDir}...`)
