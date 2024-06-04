@@ -31,15 +31,11 @@ jobs:
     - name: "List contents"
       run: "ls -alh"
 
-    - name: Remove junk
-      run: |
-        rm -rf .github/ scripts/ src/ node_modules/ tsconfig.json tslint.json
-
     - name: "Upload dist directory"
       uses: actions/upload-artifact@v4
       with:
         name: dist
-        path: ./
+        path: dist
 
   release:
     runs-on: ubuntu-latest
@@ -50,6 +46,10 @@ jobs:
       with:
         name: dist
         
+    - name: Remove junk
+      run: |
+        rm -rf .git/ .github/ scripts/ src/ node_modules/ tsconfig.json tslint.json
+
     - name: "List contents"
       run: "ls -alh"
       
@@ -71,6 +71,7 @@ jobs:
               prerelease: false,
               repo: context.repo.repo,
               tag_name: 'v' + process.env.RELEASE_TAG,
+              overwrite: true
             });
 
             core.exportVariable('RELEASE_ID', response.data.id);
