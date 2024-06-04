@@ -31,11 +31,15 @@ jobs:
     - name: "List contents"
       run: "ls -alh"
 
+    - name: Remove junk
+      run: |
+        rm -rf .github/ scripts/ src/ node_modules/ tsconfig.json tslint.json
+
     - name: "Upload dist directory"
       uses: actions/upload-artifact@v4
       with:
         name: dist
-        path: dist/
+        path: ./
 
   release:
     runs-on: ubuntu-latest
