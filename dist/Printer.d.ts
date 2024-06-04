@@ -1,0 +1,42 @@
+import Adapter from './Adapter';
+import { Barcode, CodeTable, Color, DrawerPin, Font, Justification, PDF417ErrorCorrectLevel, PDF417Type, Position, QRErrorCorrectLevel, QRModel, RasterMode, TextMode, Underline } from './Commands';
+import { IRaster } from './Images';
+export default class Printer {
+    private encoding;
+    private buffer;
+    private adapter;
+    constructor(adapter: Adapter, encoding?: string);
+    setEncoding(encoding: string): Printer;
+    flush(): Promise<void>;
+    init(): Printer;
+    resetToDefault(): Printer;
+    feed(feed?: number): Printer;
+    reverse(feed?: number): Printer;
+    setBold(bold?: boolean): Printer;
+    setDoubleStrike(double?: boolean): Printer;
+    setInverse(inverse?: boolean): Printer;
+    setUnderline(value: Underline): Printer;
+    setJustification(value: Justification): Printer;
+    setFont(value: Font): Printer;
+    cut(partial?: boolean): Printer;
+    openDrawer(pin?: DrawerPin): Printer;
+    setColor(color: Color): Printer;
+    setCodeTable(table: CodeTable): Printer;
+    setTextMode(mode: TextMode): Printer;
+    barcode(code: string, type: Barcode, height: number, width: 2 | 3 | 4 | 5 | 6, font: Font, pos: Position): Printer;
+    qr(code: string, options?: {
+        model?: QRModel;
+        errorCorrect?: QRErrorCorrectLevel;
+        size?: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16;
+    }): Printer;
+    pdf417(code: string, type?: PDF417Type, height?: number, width?: number, columns?: number, rows?: number, error?: PDF417ErrorCorrectLevel): Printer;
+    beep(n?: number, t?: number): Printer;
+    setLineSpacing(spacing?: number): Printer;
+    raster(raster: IRaster | undefined, mode?: RasterMode): Printer;
+    writeLine(value?: string, encoding?: string): Printer;
+    writeList(values: string[], encoding?: string): Printer;
+    close(): Promise<Printer>;
+    open(): Promise<Printer>;
+    clearBuffer(): Printer;
+    write(value: string | Uint8Array | number, encoding?: string): Printer;
+}
