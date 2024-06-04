@@ -55,7 +55,7 @@ jobs:
       
     - name: "Determine tag"
       # run: "echo \"RELEASE_TAG=v3.1.0\" >> $GITHUB_ENV"
-      run: "echo \"RELEASE_TAG=$(cat package.json | grep version | head -1 | awk -F: '{ print $2 }' | sed 's/[\",]//g' | tr -d' ')\" >> $GITHUB_ENV"
+      run: "echo \"RELEASE_TAG=$(cat package.json | grep version | head -1 | awk -F: '{ print $2 }' | sed 's/[\",]//g')\" >> $GITHUB_ENV"
 
     - name: "Create release"
       uses: "actions/github-script@v7"
